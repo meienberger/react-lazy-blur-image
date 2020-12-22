@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import VisibilitySensor from 'react-visibility-sensor';
 
@@ -27,6 +27,10 @@ const ProgressiveImage = ({ render, uri, placeholder, initialBlur, timingFunctio
 			transition: `filter ${transitionTime}ms ${timingFunction}`,
 		};
 	};
+	
+	useEffect(()=>{
+		setSrc(uri);
+	}, [uri]);
 
 	return (
 		<VisibilitySensor offset={{ bottom: -300, top: -300, left: -300, right: -300 }} partialVisibility={true}>
